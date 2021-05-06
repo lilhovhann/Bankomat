@@ -13,9 +13,9 @@ public class ConsoleApp {
     public static void main(String[] args) {
         Bank bank = new Bank("ArdshinBank", "Abovyan 5/4");
         Person person1 = new Person(System.currentTimeMillis(), "Armen", 34, "male");
-        Person person2 = new Person(System.currentTimeMillis(), "Lilit", 23, "female");
-        Account account1 = new Account(System.currentTimeMillis() + 2, person1.getId(), 120000);
-        Account account2 = new Account(System.currentTimeMillis() + 2, person2.getId(), 250000);
+        Person person2 = new Person(System.currentTimeMillis() + 1, "Lilit", 23, "female");
+        Account account1 = new Account(System.currentTimeMillis() + 2, person1.getId(), 250000);
+        Account account2 = new Account(System.currentTimeMillis() + 2, person2.getId(), 200000);
 
         List<Person> persons = new ArrayList<>();
         persons.add(person1);
@@ -33,7 +33,7 @@ public class ConsoleApp {
 
         for (Person item : persons) {
             if (item.getName().equalsIgnoreCase(inputName)) {
-                System.out.println("Welcome "+item.getName());
+                System.out.println("Welcome " + item.getName());
                 for (Account moneyItem : accounts) {
                     if (item.getId() == moneyItem.getPersonId()) {
                         System.out.printf("Your balance is %.2f\n", moneyItem.getBalance());
@@ -45,11 +45,9 @@ public class ConsoleApp {
                     }
                 }
             }
-//else {
-//                System.out.println("You don't have account in our bank yet");
-//                return;
-//            }
+
         }
+        System.out.println("You don't have account in our bank yet");
 
     }
 
