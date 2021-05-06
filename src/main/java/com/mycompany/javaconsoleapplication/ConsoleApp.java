@@ -36,12 +36,19 @@ public class ConsoleApp {
                 System.out.println("Welcome " + item.getName());
                 for (Account moneyItem : accounts) {
                     if (item.getId() == moneyItem.getPersonId()) {
-                        System.out.printf("Your balance is %.2f\n", moneyItem.getBalance());
+                        System.out.printf("Your balance is %.0f\n", moneyItem.getBalance());
                         Scanner inputM = new Scanner(System.in);
                         System.out.println("How much money do you want: ");
                         double inputMoney = inputM.nextDouble();
-                        System.out.printf("Your balance is %.2f now\n", moneyItem.getBalance() - inputMoney);
-                        return;
+                        if (inputMoney <= moneyItem.getBalance()) {
+                            System.out.printf("Your are getting %.0f drams...\n", inputMoney);
+                            System.out.printf("Your balance is %.0f now\n", moneyItem.getBalance() - inputMoney);
+                            return;
+                        } else {
+                            System.out.printf("Your balance is only %.0f, you are poor", moneyItem.getBalance());
+                            return;
+                        }
+
                     }
                 }
             }
