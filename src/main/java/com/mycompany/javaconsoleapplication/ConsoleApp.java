@@ -25,13 +25,30 @@ public class ConsoleApp {
         accounts.add(account1);
         accounts.add(account2);
 
-       
         Bankomat bankomat = new Bankomat(bank, accounts, persons);
-        bankomat.doCheck();
+
+        System.out.printf("Bank: %s\nAddress: %s\n", bank.getName(), bank.getAddress());
+        System.out.println("Enter your name please: ");
+
+        Scanner loginInput = new Scanner(System.in);
+        String personName = loginInput.nextLine();
         
+        Person checkedPerson = bankomat.doCheckPerson(personName);
+        
+        if(checkedPerson != null){
+           Account account = bankomat.doCheckAccount(checkedPerson);
+           if(account != null){
+               System.out.println("How much money do you want: ");
+               Scanner inputM = new Scanner(System.in);
+               double inputMoney = inputM.nextDouble();
+               bankomat.doReceiveMoney(inputMoney,account);
+           }
+          
+           
+        }
+      
 
     }
 
-   
 
 }

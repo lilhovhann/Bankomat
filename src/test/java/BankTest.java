@@ -1,37 +1,29 @@
-import com.mycompany.javaconsoleapplication.ConsoleApp;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
+import com.mycompany.javaconsoleapplication.Account;
+import com.mycompany.javaconsoleapplication.Bank;
+import com.mycompany.javaconsoleapplication.Person;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author lilith
  */
 public class BankTest {
-    
-    
-    ConsoleApp consoleApp = new ConsoleApp(); 
-            
+
+    Bank bank = new Bank("ArdshinBank", "Abovyan 5/4");
+    Person person1 = new Person(System.currentTimeMillis(), "Armen", 34, "male");
+    Person person2 = new Person(System.currentTimeMillis() + 1, "Lilit", 23, "female");
+    Account account1 = new Account(System.currentTimeMillis() + 2, person1.getId(), 250000);
+    Account account2 = new Account(System.currentTimeMillis() + 2, person2.getId(), 200000);
+
+    @Test
+    public void BankomatChecker() {
+        
+    }
+
     public BankTest() {
     }
+
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
 }
