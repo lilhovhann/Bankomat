@@ -25,37 +25,13 @@ public class ConsoleApp {
         accounts.add(account1);
         accounts.add(account2);
 
-        System.out.printf("Bank: %s\nAddress: %s\n", bank.getName(), bank.getAddress());
-
-        Scanner loginInput = new Scanner(System.in);
-        System.out.println("Enter your name please: ");
-        String inputName = loginInput.nextLine();
-
-        for (Person item : persons) {
-            if (item.getName().equalsIgnoreCase(inputName)) {
-                System.out.println("Welcome " + item.getName());
-                for (Account moneyItem : accounts) {
-                    if (item.getId() == moneyItem.getPersonId()) {
-                        System.out.printf("Your balance is %.0f\n", moneyItem.getBalance());
-                        Scanner inputM = new Scanner(System.in);
-                        System.out.println("How much money do you want: ");
-                        double inputMoney = inputM.nextDouble();
-                        if (inputMoney <= moneyItem.getBalance()) {
-                            System.out.printf("Your are getting %.0f drams...\n", inputMoney);
-                            System.out.printf("Your balance is %.0f now\n", moneyItem.getBalance() - inputMoney);
-                            return;
-                        } else {
-                            System.out.printf("Your balance is only %.0f, you are poor", moneyItem.getBalance());
-                            return;
-                        }
-
-                    }
-                }
-            }
-
-        }
-        System.out.println("You don't have account in our bank yet");
+       
+        Bankomat bankomat = new Bankomat(bank, accounts, persons);
+        bankomat.doCheck();
+        
 
     }
+
+   
 
 }
