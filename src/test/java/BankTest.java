@@ -1,7 +1,8 @@
 
 import com.mycompany.javaconsoleapplication.Account;
-import com.mycompany.javaconsoleapplication.Bank;
+import com.mycompany.javaconsoleapplication.Bankomat;
 import com.mycompany.javaconsoleapplication.Person;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -10,20 +11,28 @@ import org.junit.Test;
  */
 public class BankTest {
 
-    Bank bank = new Bank("ArdshinBank", "Abovyan 5/4");
+    Person person;
     Person person1 = new Person(System.currentTimeMillis(), "Armen", 34, "male");
-    Person person2 = new Person(System.currentTimeMillis() + 1, "Lilit", 23, "female");
+    Account account;
+    Double money = 240000.0;
     Account account1 = new Account(System.currentTimeMillis() + 2, person1.getId(), 250000);
-    Account account2 = new Account(System.currentTimeMillis() + 2, person2.getId(), 200000);
 
     @Test
-    public void BankomatChecker() {
-        
+    public void doCheckPerson() {
+        assertEquals(person, Bankomat.doCheckPerson("Armen"));
     }
+
+    @Test
+    public void doCheckAccount() {
+        assertEquals(account, Bankomat.doCheckAccount(person1));
+    }
+
+    @Test
+    public void doReceiveMoney() {
+        assertEquals(money, Bankomat.doReceiveMoney(10000.0, account1));
+    } 
 
     public BankTest() {
     }
-
-    
 
 }

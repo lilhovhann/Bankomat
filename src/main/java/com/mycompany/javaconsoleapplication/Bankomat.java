@@ -20,7 +20,7 @@ public class Bankomat {
         this.persons = persons;
     }
 
-    public Person doCheckPerson(String personName) {
+    public static Person doCheckPerson(String personName) {
         for (Person item : persons) {
             if (item.getName().equalsIgnoreCase(personName)) {
                 System.out.println("Welcome " + item.getName());
@@ -31,7 +31,7 @@ public class Bankomat {
         return null;
     }
 
-    public Account doCheckAccount(Person person) {
+    public static Account doCheckAccount(Person person) {
         for (Account accountItem : accounts) {
             if (person.getId() == accountItem.getPersonId()) {
                 System.out.printf("Your balance is %.0f\n", accountItem.getBalance());
@@ -41,14 +41,15 @@ public class Bankomat {
         return null;
     }
 
-    public void doReceiveMoney(Double wantedAmmount, Account account) {
+    public static Double doReceiveMoney(Double wantedAmmount, Account account) {
         if (wantedAmmount <= account.getBalance()) {
             System.out.printf("Your are getting %.0f drams...\n", wantedAmmount);
-            System.out.printf("Your balance is %.0f now\n", account.getBalance() - wantedAmmount);
-            
+            double currentBalance = account.getBalance() - wantedAmmount;
+            System.out.printf("Your balance is %.0f now\n", currentBalance);
+            return currentBalance;
         } else {
             System.out.printf("Your balance is only %.0f, you are poor", account.getBalance());
-            
+            return null;
         }
-        }              
     }
+}
