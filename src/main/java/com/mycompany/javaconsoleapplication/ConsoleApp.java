@@ -12,11 +12,18 @@ public class ConsoleApp {
 
     public static void main(String[] args) {
         Bank bank = new Bank("ArdshinBank", "Abovyan 5/4");
-        Person person1 = new Person(System.currentTimeMillis(), "John", 34, "male");
-        Account account = new Account(System.currentTimeMillis() + 2, person1.getId() , 1200);
+        Person person1 = new Person(System.currentTimeMillis(), "Armen", 34, "male");
+        Person person2 = new Person(System.currentTimeMillis(), "Lilit", 23, "female");
+        Account account1 = new Account(System.currentTimeMillis() + 2, person1.getId(), 120000);
+        Account account2 = new Account(System.currentTimeMillis() + 2, person2.getId(), 250000);
 
         List<Person> persons = new ArrayList<>();
         persons.add(person1);
+        persons.add(person2);
+
+        List<Account> accounts = new ArrayList<>();
+        accounts.add(account1);
+        accounts.add(account2);
 
         System.out.printf("Bank: %s\nAddress: %s\n", bank.getName(), bank.getAddress());
 
@@ -26,14 +33,22 @@ public class ConsoleApp {
 
         for (Person item : persons) {
             if (item.getName().equalsIgnoreCase(inputName)) {
-                System.out.printf("%s your balance is %f\n", item.getName(), account.getBalance());
-                Scanner inputM = new Scanner(System.in);
-                System.out.println("How much money do you want: ");
-                double inputMoney = inputM.nextDouble();
-                System.out.printf("Your balance is %f now\n", account.getBalance()-inputMoney);
-            }else{
-                System.out.println("You don't have account in "+bank.getName()+ " yet");
+                System.out.println("Welcome "+item.getName());
+                for (Account moneyItem : accounts) {
+                    if (item.getId() == moneyItem.getPersonId()) {
+                        System.out.printf("Your balance is %.2f\n", moneyItem.getBalance());
+                        Scanner inputM = new Scanner(System.in);
+                        System.out.println("How much money do you want: ");
+                        double inputMoney = inputM.nextDouble();
+                        System.out.printf("Your balance is %.2f now\n", moneyItem.getBalance() - inputMoney);
+                        return;
+                    }
+                }
             }
+//else {
+//                System.out.println("You don't have account in our bank yet");
+//                return;
+//            }
         }
 
     }
