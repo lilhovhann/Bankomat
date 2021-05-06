@@ -31,6 +31,8 @@ public class ConsoleApp {
                 System.out.println("How much money do you want: ");
                 double inputMoney = inputM.nextDouble();
                 System.out.printf("Your balance is %f now\n", account.getBalance()-inputMoney);
+            }else{
+                System.out.println("You don't have account in "+bank.getName()+ " yet");
             }
         }
 
